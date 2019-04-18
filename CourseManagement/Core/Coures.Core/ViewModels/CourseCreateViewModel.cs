@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Coures.Core.ViewModels
 {
-    public class CourseViewModel
+    public class CourseCreateViewModel
     {
-
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public string Description { get; set; }

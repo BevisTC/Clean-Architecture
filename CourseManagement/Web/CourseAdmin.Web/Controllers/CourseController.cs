@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Coures.Core.UseCases;
+using Coures.Core.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,7 +14,11 @@ namespace CourseAdmin.Web.Controllers
         public ActionResult Index()
         {
 
-            return View();
+           
+            CourseHandler handler = new CourseHandler();
+            List<CourseViewModel> models = handler.List();
+
+            return View(models);
         }
 
         // GET: Course/Details/5
@@ -29,11 +35,14 @@ namespace CourseAdmin.Web.Controllers
 
         // POST: Course/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(CourseCreateViewModel vm)
         {
             try
             {
                 // TODO: Add insert logic here
+                CourseHandler handler = new CourseHandler();
+                handler.Create(vm);
 
                 return RedirectToAction("Index");
             }
@@ -44,18 +53,24 @@ namespace CourseAdmin.Web.Controllers
         }
 
         // GET: Course/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(long id)
         {
-            return View();
+
+            CourseHandler handler = new CourseHandler();
+            CourseEditModel vm = handler.QueryById(id);
+
+            return View(vm);
         }
 
         // POST: Course/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(CourseEditModel vm)
         {
             try
             {
-                // TODO: Add update logic here
+                CourseHandler handler = new CourseHandler();
+                handler.Update(vm);
 
                 return RedirectToAction("Index");
             }
@@ -65,26 +80,20 @@ namespace CourseAdmin.Web.Controllers
             }
         }
 
-        // GET: Course/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+
 
         // POST: Course/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpGet]
+        public ActionResult Delete(long id)
         {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            // TODO: Add delete logic here
+
+            CourseHandler handler = new CourseHandler();
+            handler.Delete(id);
+
+            return RedirectToAction("Index");
+         
         }
     }
 }
