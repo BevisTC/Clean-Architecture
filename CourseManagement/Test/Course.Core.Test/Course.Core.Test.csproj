@@ -45,13 +45,26 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
     <Compile Include="CourseListUseCaseTest.cs" />
+    <Compile Include="FakeCourseDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Coures.Core\Coures.Core.csproj">
+      <Project>{43488C52-7603-4B98-9D78-6A412C5C58D5}</Project>
+      <Name>Coures.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DB\CourseManagement.EF\CourseManagement.EF.csproj">
+      <Project>{3a140fa5-69e2-44f9-881f-183378f95dde}</Project>
+      <Name>CourseManagement.EF</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
