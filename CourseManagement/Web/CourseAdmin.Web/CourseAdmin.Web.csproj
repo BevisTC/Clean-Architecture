@@ -192,6 +192,10 @@
       <Project>{43488c52-7603-4b98-9d78-6a412c5c58d5}</Project>
       <Name>Coures.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\DB\CourseManagement.EF\CourseManagement.EF.csproj">
+      <Project>{3A140FA5-69E2-44F9-881F-183378F95DDE}</Project>
+      <Name>CourseManagement.EF</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

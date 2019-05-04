@@ -4,11 +4,19 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Course.Core.Test
 {
     [TestClass]
-    public class UnitTest1
+    public class CourseListUseCaseTest
     {
+
+        
+
+
         [TestMethod]
-        public void TestMethod1()
+        public void Test_List_All_Courses()
         {
+
+            
+
+
         }
     }
 }

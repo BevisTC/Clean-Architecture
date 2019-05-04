@@ -58,6 +58,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Gateways\CourseEFDataAccess.cs" />
+    <Compile Include="Gateways\IDataAccess.cs" />
     <Compile Include="MapperExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UseCases\CourseHandler.cs" />

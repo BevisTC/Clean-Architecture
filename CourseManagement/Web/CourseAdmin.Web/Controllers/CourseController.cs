@@ -1,5 +1,7 @@
-﻿using Coures.Core.UseCases;
+﻿using Coures.Core.Gateways;
+using Coures.Core.UseCases;
 using Coures.Core.ViewModels;
+using CourseManagement.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +16,9 @@ namespace CourseAdmin.Web.Controllers
         public ActionResult Index()
         {
 
+            IDataAccess<Course> dataAccess = new CourseEFDataAccess();
            
-            CourseHandler handler = new CourseHandler();
+            CourseHandler handler = new CourseHandler(dataAccess);
             List<CourseViewModel> models = handler.List();
 
             return View(models);
@@ -40,8 +43,9 @@ namespace CourseAdmin.Web.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
-                CourseHandler handler = new CourseHandler();
+
+                IDataAccess<Course> dataAccess = new CourseEFDataAccess();
+                CourseHandler handler = new CourseHandler(dataAccess);
                 handler.Create(vm);
 
                 return RedirectToAction("Index");
@@ -55,8 +59,8 @@ namespace CourseAdmin.Web.Controllers
         // GET: Course/Edit/5
         public ActionResult Edit(long id)
         {
-
-            CourseHandler handler = new CourseHandler();
+            IDataAccess<Course> dataAccess = new CourseEFDataAccess();
+            CourseHandler handler = new CourseHandler(dataAccess);
             CourseEditModel vm = handler.QueryById(id);
 
             return View(vm);
@@ -69,7 +73,8 @@ namespace CourseAdmin.Web.Controllers
         {
             try
             {
-                CourseHandler handler = new CourseHandler();
+                IDataAccess<Course> dataAccess = new CourseEFDataAccess();
+                CourseHandler handler = new CourseHandler(dataAccess);
                 handler.Update(vm);
 
                 return RedirectToAction("Index");
@@ -87,9 +92,8 @@ namespace CourseAdmin.Web.Controllers
         public ActionResult Delete(long id)
         {
 
-            // TODO: Add delete logic here
-
-            CourseHandler handler = new CourseHandler();
+            IDataAccess<Course> dataAccess = new CourseEFDataAccess();
+            CourseHandler handler = new CourseHandler(dataAccess);
             handler.Delete(id);
 
             return RedirectToAction("Index");
